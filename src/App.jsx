@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 
-import { Navbar, Homepage } from './components/index';
+import { Navbar, Homepage, AllProducts } from './components/index';
 import './App.scss';
 
 import GeneralContext from './contexts/GeneralContext';
@@ -10,8 +10,14 @@ import GeneralContext from './contexts/GeneralContext';
 function App() {
   const [products, setProducts] = useState([]);
   const [carousel, setCarousel] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
+
+    const savedCategory = JSON.parse(localStorage.getItem('category'));
+    if (savedCategory !== null) {
+      setSelectedCategory(savedCategory);
+    }
 
     axios.get('http://localhost:5001/api/products')
       .then((res) => {
@@ -26,12 +32,18 @@ function App() {
 
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem('category', JSON.stringify(selectedCategory));
+  }, [selectedCategory]);
+
+
   return (
     <>
-      <GeneralContext.Provider value={{ products, carousel }} >
+      <GeneralContext.Provider value={{ products, carousel, selectedCategory, setSelectedCategory }} >
         <Navbar />
         <Routes>
           <Route path='/' element={<Homepage />} />
+          <Route path='/products/:id' element={<AllProducts />} />
         </Routes>
 
       </GeneralContext.Provider>
