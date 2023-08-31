@@ -22,7 +22,7 @@ const Homepage = () => {
 
       <div className='boot-care'>
         <h2>Complimentary Boot Care Service</h2>
-        <div className='boot-care'>
+        <div className='boot-care description'>
           Complimentary boot cleaning, polishing and conditioning service is available at our
           locations for our customers. (even if you purchased your boots from another retailer!).<br /><br />
 
