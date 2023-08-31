@@ -1,0 +1,52 @@
+.main-products-container {
+  display: flex;
+  // flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 80%;
+  margin: auto;
+}
+
+.all-products {
+  display: flex;
+  flex-direction: column;
+  font-family: Montserrat;
+  width: 250px;
+  margin: 2em;
+
+  img {
+    width: 250px;
+    height: 200px;
+  }
+
+  .name-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 15px;
+
+    .product-name, .product-price {
+      font-family: Montserrat;
+      font-weight: 500;
+      text-align: left;
+    }
+  }
+
+  .product-category {
+    text-align: left;
+    font-family: Montserrat;
+    color: grey;
+  }
+}
+
+.title-description {
+  font-family: Montserrat;
+  padding: 20px;
+  border-bottom: solid 1px rgb(167, 163, 163);
+}
+
+.filter-to-products {
+  display: flex;
+  flex-direction: row;
+}
