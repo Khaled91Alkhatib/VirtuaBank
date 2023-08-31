@@ -3,10 +3,15 @@ import logo from "../../assets/logo-transparent.png";
 import GeneralContext from '../../contexts/GeneralContext';
 
 import "./Navbar.scss";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const { setSelectedCategory } = useContext(GeneralContext);
+  const navigate = useNavigate();
+
+  const logoClick = () => {
+    navigate("/");
+  };
 
   return (
     <div>
@@ -18,7 +23,7 @@ const Navbar = () => {
       <div className='main-nav'>
 
         <div className='logo-category'>
-          <img src={logo} alt='Logo' />
+          <img onClick={logoClick} src={logo} alt='Logo' />
 
           <NavLink
             className="button"
