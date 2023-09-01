@@ -7,6 +7,8 @@ const AllProducts = () => {
   const { products, selectedCategory } = useContext(GeneralContext);
   const [onHover, setOnHover] = useState(Array(products.length).fill(false));
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedStyle, setSelectedStyle] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   const styles = [];
 
@@ -29,16 +31,36 @@ const AllProducts = () => {
     setOnHover(updatedOnHover);
   };
 
-  const filteredProducts = products.filter(product => (
-    (product.category.toLowerCase() === selectedCategory.toLowerCase()) &&
-    product.disp
-  ));
+  const filteredProducts = products.filter(product => {
+    if (selectedStyle === "" && searchText === "") {
+      return (product.category.toLowerCase() === selectedCategory.toLowerCase()) &&
+        product.disp;
+    } else if (selectedStyle !== "") {
+      return (product.category.toLowerCase() === selectedCategory.toLowerCase()) &&
+        product.disp && product.style === selectedStyle;
+    } else if (searchText !== "") {
+      return (product.category.toLowerCase() === selectedCategory.toLowerCase()) &&
+        product.disp &&
+        product.name.toLowerCase().includes(searchText.toLowerCase());
+    }
+  });
 
   filteredProducts.map(product => {
     if (!styles.includes(product.style)) {
       styles.push(product.style);
     }
   });
+
+  const handleStyleChange = (event) => {
+    const currentStyle = event.target.value;
+    setSelectedStyle((prev) => prev === currentStyle ? "" : currentStyle);
+  };
+
+  // useEffect(() => {
+  //   console.log(products);
+  //   console.log(selectedStyle);
+  //   console.log(searchText);
+  // }, [products, selectedStyle, searchText]);
 
   return (
     <div>
@@ -58,13 +80,33 @@ const AllProducts = () => {
       }
       <div className='filter-to-products'>
 
-        <div>Filter By</div>
-        <div>
-          {styles.map((style, index) => (
-            <div key={index}>
-              <button>{style}</button>
-            </div>
-          ))}
+        <div className='filter-column'>
+
+          <input
+            type='text'
+            placeholder='Search Products...'
+            className='search-bar'
+            onChange={(e) => { setSearchText(e.target.value); }}
+            value={searchText}
+          />
+
+          <div className='filter-title'>Filter By</div>
+          <div className='styles'>
+            <div className='sub-filter'>Styles</div>
+            {styles.sort((a, b) => a[0].localeCompare(b[0])).map((style, index) => (
+              <div className='all-styles' key={index}>
+                <input
+                  className='input'
+                  type='checkbox'
+                  name='style'
+                  value={style}
+                  checked={selectedStyle === style}
+                  onChange={handleStyleChange}
+                /> {style}
+              </div>
+            ))}
+          </div>
+
         </div>
 
         <div className='main-products-container'>
