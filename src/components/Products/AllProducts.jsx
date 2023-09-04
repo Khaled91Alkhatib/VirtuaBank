@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import GeneralContext from '../../contexts/GeneralContext';
 
 import "./AllProducts.scss";
+import { NavLink } from 'react-router-dom';
 
 const AllProducts = () => {
   const { products, selectedCategory } = useContext(GeneralContext);
@@ -67,13 +68,13 @@ const AllProducts = () => {
       {isLoading ? "Loading..." :
         <div className='title-description'>{selectedCategory.toLowerCase() === "men" ?
           <div>
-            <div style={{ fontWeight: "bold", paddingBottom: "5px", fontSize: "18px" }}>Men's All Styles</div>
-            <div>Our men's collection includes styles perfect for the office or your next weekend getaway. Shop our wide selection of comfortable men's dress shoes, athleisure and more.</div>
+            <div style={{ fontWeight: "bold", paddingBottom: "5px", fontSize: "18px", textAlign: "center" }}>Men's All Styles</div>
+            <div style={{textAlign:"center"}}>Our men's collection includes styles perfect for the office or your next weekend getaway. Shop our wide selection of comfortable men's dress shoes, athleisure and more.</div>
           </div>
           :
           <div>
-            <div style={{ fontWeight: "bold", paddingBottom: "5px", fontSize: "18px" }}>Women's All Styles</div>
-            <div>In search of your next pair of fashion shoes for women? Browse all of FOOTPRINTS' women's shoes. Whether you're after stylish shoes for women or something a little more practical, you'll find plenty on our website. Find your next new pair of comfortable shoes today.</div>
+            <div style={{ fontWeight: "bold", paddingBottom: "5px", fontSize: "18px", textAlign: "center" }}>Women's All Styles</div>
+            <div style={{textAlign:"center"}}>In search of your next pair of fashion shoes for women? Browse all of FOOTPRINTS' women's shoes. Whether you're after stylish shoes for women or something a little more practical, you'll find plenty on our website. Find your next new pair of comfortable shoes today.</div>
           </div>
         }
         </div>
@@ -112,22 +113,24 @@ const AllProducts = () => {
         <div className='main-products-container'>
           {filteredProducts.map((product, index) => (
             <div className='all-products' key={index}>
+              <NavLink className="product-navlink" to={`${product.id}`}>
 
-              <div>
-                <img
-                  src={!onHover[index] ? `/images${product.image1}` : `/images${product.image2}`}
-                  alt='image'
-                  onMouseEnter={() => mouseEnterImage(index)}
-                  onMouseLeave={() => mouseLeaveImage(index)}
-                />
-              </div>
+                <div>
+                  <img
+                    src={!onHover[index] ? `/images${product.image1}` : `/images${product.image2}`}
+                    alt='image'
+                    onMouseEnter={() => mouseEnterImage(index)}
+                    onMouseLeave={() => mouseLeaveImage(index)}
+                  />
+                </div>
 
-              <div className='name-price'>
-                <div className='product-name'>{product.name}</div>
-                <div className='product-price'>${(product.price / 100).toFixed(2)}</div>
-              </div>
+                <div className='name-price'>
+                  <div className='product-name'>{product.name}</div>
+                  <div className='product-price'>${(product.price / 100).toFixed(2)}</div>
+                </div>
 
-              <div className='product-category'>{product.category}</div>
+                <div className='product-category'>{product.category}</div>
+              </NavLink>
 
             </div>
           ))}
