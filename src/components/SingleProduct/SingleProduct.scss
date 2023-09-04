@@ -1,0 +1,54 @@
+.main-single-product {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  // align-items: center;
+  width: 100%;
+  margin-top: 2em;
+}
+
+.name-price, .name, .price {
+  display: flex;
+  justify-content: space-between;
+  font-size: 25px;
+  font-family: Montserrat;
+  flex-wrap: wrap;
+
+  &.name {
+    font-weight: bold;
+  }
+}
+
+.style-cat {
+  font-family: Montserrat;
+  font-size: 15px;
+}
+
+.sku {
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.size {
+  margin-top: 1.5em;
+  font-family: Montserrat;
+  font-weight: 500;
+}
+
+.slider-images {
+  max-width: 600px;
+}
+
+.carousel-root {
+  width: 40%;
+  text-align: center;
+}
+
+.thumb {
+
+  &:hover {
+    cursor: pointer;
+  }
+
+}
