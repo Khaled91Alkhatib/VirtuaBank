@@ -12,7 +12,7 @@ const Homepage = () => {
         <img className='main-image' src="/main-image.png" alt='image' />
       </div>
 
-      <div>
+      <div style={{ textAlign: "center" }}>
         <h2 className='slogan'>“Nother day, ‘nother great pair of kicks from FOOTPRINTS!”</h2>
         <button style={{ marginRight: "7px" }} className='shop'>Shop Men's</button>
         <button className='shop'>Shop Women's</button>
