@@ -1,0 +1,25 @@
+.all-sizes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 60%;
+}
+
+.size-button {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  text-align: center;
+  border-radius: 5px;
+  // padding: 0.5em 1.5em;
+  padding: 0.5em 0;
+  min-width: 3rem;
+  max-width: 6rem;
+  // width: 2rem;
+  background-color: white;
+  margin-right: 1em;
+  margin-bottom: 1em;
+
+  &:hover {
+    border-color: #0579d0;
+  }
+}
