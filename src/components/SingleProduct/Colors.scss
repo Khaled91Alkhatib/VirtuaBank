@@ -1,0 +1,75 @@
+.color-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 60%;
+}
+
+.btn {
+  margin-right: 1em;
+  margin-bottom: 1em;
+  padding: 1em 0;
+  min-width: 3rem;
+  border-radius: 5px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 1pt #ccc;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.color-selected {
+    box-shadow: 0 0 0 1.5pt #0579d0;
+  }
+}
+
+.black {
+  background-color: black;
+}
+.grey {
+  background-color: DarkGray;
+}
+.brown {
+  background-color: DarkGoldenrod;
+}
+.navy {
+  background-color: navy;
+}
+.red {
+  background-color: red;
+}
+.blue {
+  background-color: DeepSkyBlue;
+}
+.beige {
+  background-color: AntiqueWhite;
+}
+.white {
+  background-color: snow;
+}
+.purple {
+  background-color: blueviolet;
+}
+.green {
+  background-color: LimeGreen;
+}
+.pink {
+  background-color: HotPink;
+}
+.yellow {
+  background-color: yellow;
+}
+.orange {
+  background-color: DarkOrange;
+}
+
+.btn2 {
+  align-self: center;
+  height: 30px;
+  width: 60px;
+  border: 0.3em double black;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
