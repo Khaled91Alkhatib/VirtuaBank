@@ -16,14 +16,14 @@ const SingleProduct = () => {
   const [id, setId] = useState(Number(useParams().id));
   const [productDescription, setProductDescription] = useState([]);
   const [allColors, setAllColors] = useState([]);
-  
+
+  const getProductById = (id) => {
+    axios.get(`http://localhost:5001/api/products/${id}`)
+      .then(res => {
+        setSingleProduct(prev => res.data.product);
+      });
+  };
   useEffect(() => {
-    const getProductById = (id) => {
-      axios.get(`http://localhost:5001/api/products/${id}`)
-        .then(res => {
-          setSingleProduct(prev => res.data.product);
-        });
-    };
 
     getProductById(id);
   }, [id]);
@@ -47,7 +47,10 @@ const SingleProduct = () => {
         });
       setProductDescription(description);
     }
-  }, [products, singleProduct]);
+
+    window.scrollTo(0, 0);
+
+  }, [products, singleProduct, id]);
 
   const changeColor = (product) => {
     setId(product.id);
