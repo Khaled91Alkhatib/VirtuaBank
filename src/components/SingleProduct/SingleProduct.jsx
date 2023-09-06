@@ -12,10 +12,11 @@ import RecommendedProducts from '../Products/RecommendedProducts';
 
 const SingleProduct = () => {
   const [singleProduct, setSingleProduct] = useState([]);
-  const { products } = useContext(GeneralContext);
+  const { products, setCart, cart } = useContext(GeneralContext);
   const [id, setId] = useState(Number(useParams().id));
   const [productDescription, setProductDescription] = useState([]);
   const [allColors, setAllColors] = useState([]);
+  const [selectedSize, setSelectedSize] = useState([]);
 
   const getProductById = (id) => {
     axios.get(`http://localhost:5001/api/products/${id}`)
@@ -23,10 +24,6 @@ const SingleProduct = () => {
         setSingleProduct(prev => res.data.product);
       });
   };
-  useEffect(() => {
-
-    getProductById(id);
-  }, [id]);
 
   useEffect(() => {
     if (singleProduct.sku) {
@@ -50,11 +47,22 @@ const SingleProduct = () => {
 
     window.scrollTo(0, 0);
 
+    // Make selected color persist on refresh
+    // window.history.replaceState('', '', `/products/${singleProduct.category}/${id}`);
+
   }, [products, singleProduct, id]);
+
+  useEffect(() => {
+    getProductById(id);
+  }, [id]);
 
   const changeColor = (product) => {
     setId(product.id);
     getProductById(product.id);
+  };
+
+  const onSelectSize = (data) => {
+    setSelectedSize((prev) => data);
   };
 
   console.log(singleProduct);
@@ -93,13 +101,17 @@ const SingleProduct = () => {
             <div className='size-color'>Color : {singleProduct.color}</div>
             <Colors onColor={changeColor} allColors={allColors} />
             <div className='size-color'>Size</div>
-            <Sizes />
+            <Sizes onSelectSize={onSelectSize} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
 
             <div>
               <ul>
                 <div className='product-desc'>Description</div>
                 {productDescription}
               </ul>
+            </div>
+
+            <div className='add-to-cart'>
+              <button className='cart-button'>Add To Cart</button>
             </div>
 
           </div>

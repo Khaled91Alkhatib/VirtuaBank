@@ -67,3 +67,26 @@ li {
   font-family: Montserrat;
   font-size: 15px;
 }
+
+.add-to-cart {
+  width: 100%;
+  margin: 2em auto auto auto;
+  display: flex;
+  justify-content: center;
+}
+
+.cart-button {
+  width: 80%;
+  padding: 1em;
+  background-color: #0579d0;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  font-family: Montserrat;
+  font-size: 16px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #62A8F8;
+  }
+}
