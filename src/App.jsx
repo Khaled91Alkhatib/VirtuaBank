@@ -15,6 +15,7 @@ function App() {
     sizes: [],
     colors: []
   });
+  const [cart, setCart] = useState({});
 
   useEffect(() => {
 
@@ -50,7 +51,7 @@ function App() {
 
   return (
     <>
-      <GeneralContext.Provider value={{ products, carousel, selectedCategory, setSelectedCategory, specifications }} >
+      <GeneralContext.Provider value={{ products, carousel, selectedCategory, setSelectedCategory, specifications, cart, setCart }} >
         <Navbar />
         <Routes>
           <Route path='/' element={<Homepage />} />
