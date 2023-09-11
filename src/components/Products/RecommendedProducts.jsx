@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import GeneralContext from '../../contexts/GeneralContext';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+
 
 import "./RecommendedProducts.scss";
 
@@ -8,6 +9,7 @@ const RecommendedProducts = ({ singleProduct, category, setSingleProduct }) => {
   const { products } = useContext(GeneralContext);
   const [onHover, setOnHover] = useState(Array(4).fill(false));
   const [randomProducts, setRandomProducts] = useState([]);
+  const history = useNavigate();
 
   const mouseEnterImage = (index) => {
     const updatedOnHover = [...onHover];
@@ -44,7 +46,11 @@ const RecommendedProducts = ({ singleProduct, category, setSingleProduct }) => {
       <div className='recommended-products-container'>
         {randomProducts.map((product, index) => (
           <div className='all-products' key={index}>
-            <NavLink className="product-navlink" onClick={() => setSingleProduct(product)} to={`/products/${category.toLowerCase()}/${product.id}`}>
+            <NavLink className="product-navlink" onClick={() => {
+              setSingleProduct(product);
+              history.push(`/products/${category.toLowerCase()}/${product.id}`);
+            }}
+              to={`/products/${category.toLowerCase()}/${product.id}`}>
 
               <div>
                 <img
