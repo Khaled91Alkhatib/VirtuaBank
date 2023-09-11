@@ -15,13 +15,18 @@ function App() {
     sizes: [],
     colors: []
   });
-  const [cart, setCart] = useState({});
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
 
     const savedCategory = JSON.parse(localStorage.getItem('category'));
     if (savedCategory !== null) {
       setSelectedCategory(savedCategory);
+    }
+
+    const savedCart = JSON.parse(localStorage.getItem('cart'));
+    if (savedCart) {
+      setCart(savedCart);
     }
 
     axios.get('http://localhost:5001/api/products')
@@ -46,7 +51,8 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('category', JSON.stringify(selectedCategory));
-  }, [selectedCategory]);
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [selectedCategory, cart]);
 
 
   return (
