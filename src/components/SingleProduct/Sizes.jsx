@@ -6,7 +6,7 @@ import './sizes.scss';
 const Sizes = ({ onSelectSize, selectedSize, setSelectedSize }) => {
   const { specifications } = useContext(GeneralContext);
   const sizes = specifications.sizes;
-  console.log(selectedSize);
+  // console.log(selectedSize);
 
   const sizesArray = sizes.map((size) => {
 
