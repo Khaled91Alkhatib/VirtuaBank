@@ -69,6 +69,9 @@ li {
 }
 
 .add-to-cart {
+  display: flex;
+  flex-direction: column;
+  // flex: content;
   width: 100%;
   margin: 2em auto auto auto;
   display: flex;
@@ -87,6 +90,18 @@ li {
 
   &:hover {
     cursor: pointer;
-    background-color: #62A8F8;
+    background-color: #62a8f8;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.dont-show-disabled {
+  display: none;
+}
+.show-disabled {
+  font-size: 12px;
+  color: red;
 }

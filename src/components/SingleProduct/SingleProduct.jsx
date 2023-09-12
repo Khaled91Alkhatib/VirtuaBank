@@ -16,8 +16,9 @@ const SingleProduct = () => {
   const [id, setId] = useState(Number(useParams().id));
   const [productDescription, setProductDescription] = useState([]);
   const [allColors, setAllColors] = useState([]);
-  const [selectedSize, setSelectedSize] = useState([]);
+  const [selectedSize, setSelectedSize] = useState("");
 
+  console.log(cart);
   const getProductById = (id) => {
     axios.get(`http://localhost:5001/api/products/${id}`)
       .then(res => {
@@ -48,7 +49,7 @@ const SingleProduct = () => {
     window.scrollTo(0, 0);
 
     // Make selected color persist on refresh
-    // window.history.replaceState('', '', `/products/${singleProduct.category}/${id}`);
+    window.history.replaceState('', '', `/products/${(singleProduct.category)}/${id}`);
 
   }, [products, singleProduct, id]);
 
@@ -62,10 +63,43 @@ const SingleProduct = () => {
   };
 
   const onSelectSize = (data) => {
-    setSelectedSize((prev) => data);
+    setSelectedSize(data);
   };
 
-  console.log(singleProduct);
+  const addToCart = () => {
+
+    const newCartItem = {
+      sku: singleProduct.sku,
+      name: singleProduct.name,
+      price: singleProduct.price / 100,
+      color: singleProduct.color,
+      image: singleProduct.image1,
+      quantity: 1,
+
+      size: selectedSize,
+
+    };
+
+    const itemInCart = cart.find((item) => {
+      return item.sku === newCartItem.sku &&
+        item.size === newCartItem.size &&
+        item.color === newCartItem.color;
+    });
+
+    if (newCartItem.size === "") {
+      <div>Pick size</div>;
+    }
+    else if (itemInCart) {
+      itemInCart.quantity += 1;
+      setCart([...cart]);
+    } else if (!itemInCart) {
+      setCart([...cart, newCartItem]);
+    }
+    // console.log(newCartItem);
+  };
+
+  // console.log(selectedSize);
+  // console.log(singleProduct);
   return (
     <div>
       <div className='main-single-product'>
@@ -111,7 +145,13 @@ const SingleProduct = () => {
             </div>
 
             <div className='add-to-cart'>
-              <button className='cart-button'>Add To Cart</button>
+              <div className={selectedSize !== "" ? "dont-show-disabled" : "show-disabled"}>Please Select Size!</div>
+              <button
+                disabled={selectedSize === ""}
+                onClick={addToCart}
+                className='cart-button'>
+                Add To Cart
+              </button>
             </div>
 
           </div>
