@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 
-import { Navbar, Homepage, AllProducts, SingleProduct } from './components/index';
+import { Navbar, Homepage, AllProducts, SingleProduct, Cart } from './components/index';
 import './App.scss';
 
 import GeneralContext from './contexts/GeneralContext';
@@ -64,6 +64,7 @@ function App() {
           <Route path='/products/:id' element={<AllProducts />} />
           <Route path='/products/men/:id' element={<SingleProduct />} />
           <Route path='/products/women/:id' element={<SingleProduct />} />
+          <Route path='/cart' element={<Cart />} />
         </Routes>
 
       </GeneralContext.Provider>
