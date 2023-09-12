@@ -45,7 +45,10 @@ const Navbar = () => {
 
         <div>
           <button className="button" style={{ paddingRight: "2rem" }}>Contact Us</button>
-          <button className="button">Cart</button>
+          <NavLink
+            className="button"
+            to="/cart">
+            Cart</NavLink>
         </div>
 
       </div>
