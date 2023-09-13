@@ -2,6 +2,7 @@ import React from 'react';
 
 import Carousel from './Carousel';
 import "./Homepage.scss";
+import { NavLink } from 'react-router-dom';
 
 const Homepage = () => {
   return (
@@ -14,8 +15,8 @@ const Homepage = () => {
 
       <div style={{ textAlign: "center" }}>
         <h2 className='slogan'>“Nother day, ‘nother great pair of kicks from FOOTPRINTS!”</h2>
-        <button style={{ marginRight: "7px" }} className='shop'>Shop Men's</button>
-        <button className='shop'>Shop Women's</button>
+        <NavLink to="/products/men"><button style={{ marginRight: "7px" }} className='shop'>Shop Men's</button></NavLink>
+        <NavLink to="/products/women"><button className='shop'>Shop Women's</button></NavLink>
       </div>
 
       <Carousel />
