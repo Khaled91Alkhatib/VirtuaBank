@@ -8,11 +8,14 @@
   font-weight: bold;
   padding: 2em 0 0 0;
   text-decoration: underline;
+  text-align: center;
 }
 
 .item-count {
   font-family: Montserrat;
-  padding-bottom: 2em;
+  font-weight: 500;
+  padding-top: 1.5em;
+  color: rgb(129, 127, 127);
 }
 
 // .cart-details {
@@ -40,6 +43,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: left;
   // align-items: center;
 }
 .cart-name,
@@ -91,10 +95,6 @@ table {
   width: 90%;
   margin: auto;
 
-  // @media screen and (max-width: 700px) {
-  //   font-size: 15px;
-  // }
-
   th {
     border-bottom: 1px solid rgb(203, 203, 203);
   }
@@ -102,4 +102,49 @@ table {
 
 td {
   text-align: center;
+}
+
+.remove-item {
+  padding-top: 1em;
+  color: red;
+  font-size: 12px;
+  border: none;
+  background-color: white;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+td {
+  border-bottom: 1px solid rgb(203, 203, 203);
+}
+
+.taxes-total {
+  margin: 10px auto;
+  font-family: Montserrat;
+  // font-size: 17px;
+  width: 30%;
+}
+
+.taxes,
+.total,
+.total-before {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  &.taxes {
+    color: rgb(156, 156, 156);
+    border-bottom: 1px solid rgb(203, 203, 203);
+  }
+}
+
+.empty-cart {
+  text-align: center;
+  margin-top: 3em;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 20px;
 }
