@@ -5,8 +5,13 @@ import GeneralContext from '../../contexts/GeneralContext';
 import "./Navbar.scss";
 import { NavLink, useNavigate } from 'react-router-dom';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+library.add(faCartShopping);
+
 const Navbar = () => {
-  const { setSelectedCategory } = useContext(GeneralContext);
+  const { setSelectedCategory, cart } = useContext(GeneralContext);
   const navigate = useNavigate();
 
   const logoClick = () => {
@@ -39,16 +44,13 @@ const Navbar = () => {
             Women
           </NavLink>
 
-          <NavLink className="button">Latest</NavLink>
+          {/* <NavLink className="button">Latest</NavLink> */}
 
         </div>
 
         <div>
           <button className="button" style={{ paddingRight: "2rem" }}>Contact Us</button>
-          <NavLink
-            className="button"
-            to="/cart">
-            Cart</NavLink>
+          <button className="button"><NavLink style={{ textDecoration: "none" }} to="/cart"><FontAwesomeIcon className='cart-icon' icon="cart-shopping" size="xl" /><span className='badge'>{cart.length}</span></NavLink></button>
         </div>
 
       </div>
