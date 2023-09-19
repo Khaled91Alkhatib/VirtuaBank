@@ -4,6 +4,9 @@ import GeneralContext from '../../contexts/GeneralContext';
 import { useParams } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import "./SingleProduct.scss";
 import Sizes from './Sizes';
@@ -92,8 +95,10 @@ const SingleProduct = () => {
     else if (itemInCart) {
       itemInCart.quantity += 1;
       setCart([...cart]);
+      toast("Item Added To Cart", { type: 'success', autoClose: 1000, theme: 'light' });
     } else if (!itemInCart) {
       setCart([...cart, newCartItem]);
+      toast("Item Added To Cart", { type: 'success', autoClose: 1000, theme: 'light' });
     }
     // console.log(newCartItem);
   };
@@ -152,6 +157,7 @@ const SingleProduct = () => {
                 className='cart-button'>
                 Add To Cart
               </button>
+              <ToastContainer />
             </div>
 
           </div>
