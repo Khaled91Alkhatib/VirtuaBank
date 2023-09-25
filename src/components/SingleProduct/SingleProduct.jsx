@@ -127,7 +127,7 @@ const SingleProduct = () => {
           </div>
         </Carousel>
 
-        <div style={{ width: "40%" }}>
+        <div className='product-details'>
 
           <div className='name-price'>
             <div className='name'>{singleProduct.name}</div>
